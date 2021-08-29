@@ -22,3 +22,8 @@ $ python3 main.py -i in.csv
 $ pip3 install -r requirements.txt
 $ python3 main.py -i in.csv
 ```
+
+### Running tests
+```sh
+python3 -m pytest
+```
