@@ -78,7 +78,7 @@ def test_find_the_correct_amount_and_matches_of_apis_in_list_of_lines():
     "count_pytest_raises": 1,
     "count_simple_skip": 1,
     "count_mark_skip": 3,
-    "count_expected_failure": 4,
+    "count_pytest_expected_failure": 4,
     "count_fixture": 2,
     "count_usefixtures": 1,
     "count_parametrize": 3,
@@ -92,7 +92,7 @@ def test_find_the_correct_amount_and_matches_of_apis_in_list_of_lines():
     "matches_pytest_raises": ['(ZeroDivisionError)'],
     "matches_simple_skip": ['()'],
     "matches_mark_skip": ['', '(reason=)',  'if(sys.platform == )'],
-    "matches_expected_failure": ['(raises=IndexError)', '()', '', ''],
+    "matches_pytest_expected_failure": ['(raises=IndexError)', '()', '', ''],
     "matches_fixture": ['', '(params=[0, 1, pytest.param(2, marks=pytest.mark.skip)])'],
     "matches_usefixtures": ['()'],
     "matches_parametrize": ['', '(, [0, 1])', '(, [2, 3])'],
@@ -134,7 +134,7 @@ def test_find_the_correct_amount_and_matches_of_apis_in_file():
       "count_pytest_raises": 2,
       "count_simple_skip": 2,
       "count_mark_skip": 6,
-      "count_expected_failure": 7,
+      "count_pytest_expected_failure": 7,
       "count_fixture": 11,
       "count_usefixtures": 2,
       "count_parametrize": 4,
@@ -154,7 +154,7 @@ def test_find_the_correct_amount_and_matches_of_apis_in_file():
         '', '(reason=)', 'if(sys.version_info < (3, 7), reason=)',
         '', '()', 'if(sys.platform == )'
       ],
-      "matches_expected_failure": [
+      "matches_pytest_expected_failure": [
         '(raises=IndexError)', '()', '(sys.platform == )',
        '(run=False)', '(strict=True)', '', ''
       ],

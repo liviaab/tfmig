@@ -20,7 +20,7 @@ APIsPytest = [
     "regex": r"[@]?pytest.mark.skip(.*\(.*\))?"
   },
   {
-    "name": "expected_failure",
+    "name": "pytest_expected_failure",
     "regex": r"[@]?pytest[.mark]*?.[x]*?fail(\(.*\))?"
     # matches pytest.xfail | pytest.fail | @pytest.mark.xfail
   },
