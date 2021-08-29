@@ -2,7 +2,7 @@ import re
 from pyparsing import Regex, pythonStyleComment, dblQuotedString, sglQuotedString, quotedString
 from src.common.docstring_pattern import docString
 
-# Function search_patterns_in_list
+# Function search_patterns_in_contents
 # param patterns      list of objects with `name` and `regex` keys. E. g.:
 #                     [
 #                         {
@@ -15,7 +15,7 @@ from src.common.docstring_pattern import docString
 #                         }
 #                     ]
 
-# params contents     list of strings where the patterns will be matched
+# param contents     list of strings where the patterns will be matched
 def search_patterns_in_contents(patterns, contents):
   result = __init_result(patterns)
 
@@ -29,6 +29,20 @@ def search_patterns_in_contents(patterns, contents):
 
   return result
 
+# Function search_patterns_in_content
+# param patterns      list of objects with `name` and `regex` keys. E. g.:
+#                     [
+#                         {
+#                             "name": "native_assert"
+#                             "regex": "\s*assert\s+(.*)"
+#                         },
+#                         {
+#                             "name": "pytest_raises"
+#                             "regex": "pytest.raises(\(.*\))"
+#                         }
+#                     ]
+
+# param contents     string (or file content) where the patterns will be matched
 def search_patterns_in_content(patterns, content, ignoreStrings=True):
   result = __init_result(patterns)
 
