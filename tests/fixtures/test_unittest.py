@@ -90,7 +90,6 @@ def skipUnlessHasattr(obj, attr):
 
 events = []
 
-
 class Test(IsolatedAsyncioTestCase):
 
 
