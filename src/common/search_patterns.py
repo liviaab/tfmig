@@ -16,14 +16,17 @@ from src.common.docstring_pattern import docString
 #                     ]
 
 # param contents     list of strings where the patterns will be matched
-def search_patterns_in_contents(patterns, contents):
+def search_patterns_in_contents(patterns, contents, ignoreComments=True):
   result = __init_result(patterns)
 
   for content in contents:
-    if content.strip().startswith('#') or content.strip() == '' or content.strip().startswith('"""'):
+    if content.strip() == '' or content.strip().startswith('"""'):
       continue
 
-    tmp_result = search_patterns_in_content(patterns, content)
+    if ignoreComments and content.strip().startswith('#'):
+      continue
+
+    tmp_result = search_patterns_in_content(patterns, content, ignoreComments)
     for key, value in tmp_result.items():
       result[key] += value
 
@@ -43,13 +46,16 @@ def search_patterns_in_contents(patterns, contents):
 #                     ]
 
 # param contents     string (or file content) where the patterns will be matched
-def search_patterns_in_content(patterns, content, ignoreStrings=True):
+def search_patterns_in_content(patterns, content, ignoreComments=True):
   result = __init_result(patterns)
 
   if content == None:
     return result
 
-  expr = Regex(r'.*').ignore(pythonStyleComment | quotedString | dblQuotedString | sglQuotedString | docString)
+  expr = Regex(r'.*')
+  if ignoreComments:
+    expr = Regex(r'.*').ignore(pythonStyleComment | quotedString | dblQuotedString | sglQuotedString | docString)
+
   filtered_result = list(expr.scanString(content))
   filtered_result = '\n'.join([ re.sub("[\"|\'](.*)[\"|\']", "", text[0]) for (text, _, _ ) in filtered_result])
 
