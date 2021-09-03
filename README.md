@@ -24,6 +24,7 @@ $ python3 main.py -i in.csv
 ```
 
 ### Running tests
+Unpack the `oracles.zip` file under the tests/fixtures folder and run
 ```sh
 python3 -m pytest
 ```

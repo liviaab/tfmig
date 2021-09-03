@@ -140,6 +140,6 @@ cython_debug/
 .DS_Store
 
 in*.csv
-oracles/
 out*/
 log*
+tests/fixtures/oracles
