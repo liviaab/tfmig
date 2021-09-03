@@ -36,7 +36,7 @@ APIsUnittest = [
     "regex": r"[self.s|unittest.S]kipTest(\(.*)" # self.skipTest() | unittest.SkipTest()
   },
   {
-    "name": "unittest_expected_dailure",
+    "name": "unittest_expected_failure",
     "regex": r"@unittest.expectedFailure"
   },
   {
