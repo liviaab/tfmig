@@ -64,7 +64,7 @@ def test_find_the_correct_amount_and_matches_of_apis_in_list_of_lines():
       'count_teardownClass': 2,
       'count_unittest_skip': 0,
       'count_unittest_self_skip': 0,
-      'count_unittest_expected_dailure': 0,
+      'count_unittest_expected_failure': 0,
       'count_unittest_mock_pattern': 2,
       'count_import_unittest': 1,
 
@@ -83,7 +83,7 @@ def test_find_the_correct_amount_and_matches_of_apis_in_list_of_lines():
       'matches_teardownClass': [('Class', '(cls)'), ('Module', '()')],
       'matches_unittest_skip': [],
       'matches_unittest_self_skip': [],
-      'matches_unittest_expected_dailure': [],
+      'matches_unittest_expected_failure': [],
       'matches_unittest_mock_pattern': ['from unittest import mock', ' unittest.mock '],
       'matches_import_unittest': ['import unittest']
   }
@@ -103,7 +103,7 @@ def test_find_the_correct_amount_and_matches_of_apis_in_file():
     'count_teardownClass': 2,
     'count_unittest_skip': 4,
     'count_unittest_self_skip': 1,
-    'count_unittest_expected_dailure': 1,
+    'count_unittest_expected_failure': 1,
     'count_unittest_mock_pattern': 2,
     'count_import_unittest': 1,
 
@@ -127,7 +127,7 @@ def test_find_the_correct_amount_and_matches_of_apis_in_file():
       ')', 'mylib.__version__ < (1, 3),', 'sys.platform.startswith()', '.format(obj, attr))'
     ],
     'matches_unittest_self_skip': ['()'],
-    'matches_unittest_expected_dailure': ['@unittest.expectedFailure'],
+    'matches_unittest_expected_failure': ['@unittest.expectedFailure'],
     'matches_unittest_mock_pattern': ['from unittest import mock', ' unittest.mock '],
     'matches_import_unittest': ['import unittest']
   }
