@@ -14,7 +14,7 @@ def clone_repo(path):
     }
   print("{} - Cloning repository...".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S")))
   response = requests.get(
-              self.base_url + "/repos/{}/{}/zipball".format(org, name),
+              base_url + "/repos/{}/{}/zipball".format(org, name),
               headers=final_headers,
               stream=True
             )
