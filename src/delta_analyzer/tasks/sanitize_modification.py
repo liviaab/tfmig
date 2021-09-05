@@ -1,9 +1,7 @@
 import os
 from pydriller import ModificationType
 
-from src.common.extensions import *
-
-VALID_EXTENSIONS = [PYTHON_EXTENSION] + CI_OR_CONFIG_EXTENSIONS
+from src.common.extensions import VALID_EXTENSIONS
 
 def should_analyze(modification):
   # should be analyzed if it has a valid extension

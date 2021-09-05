@@ -143,3 +143,4 @@ in*.csv
 out*/
 log*
 tests/fixtures/oracles
+in_*
