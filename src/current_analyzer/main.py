@@ -50,7 +50,8 @@ def __examine_local_repo(local_path):
           if usesUnittest and usesPytest:
             both_files += 1
         except:
-            print("Something went wrong at {}".format(os.path.join(currentpath, file)))
+          print("Something went wrong at {}".format(os.path.join(currentpath, file)))
+          continue
 
   return (total_files, unittest_files, pytest_files, both_files)
 

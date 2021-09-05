@@ -8,14 +8,17 @@ def is_remote_repo(repo_url):
   return repo_url.startswith('http') 
 
 def clone_repo(path):
+  org = path.split('/')[-2]
+  name = path.split('/')[-1]
+
   base_url = "https://api.github.com"
-  default_headers = {
+  headers = {
       "Accept": "application/vnd.github.v3+json"
     }
   print("{} - Cloning repository...".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S")))
   response = requests.get(
               base_url + "/repos/{}/{}/zipball".format(org, name),
-              headers=final_headers,
+              headers=headers,
               stream=True
             )
 
@@ -39,6 +42,7 @@ def clone_repo(path):
 
 def remove_cloned_repo(path):
   print("{} - Removing repository...".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S")))
+
   if os.path.exists(path) and os.path.isdir(path):
     shutil.rmtree(path)
   return
