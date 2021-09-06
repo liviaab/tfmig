@@ -12,7 +12,7 @@ def run(paths):
 
   for path in paths:
     project_name = path.split('/')[-1]
-    print("Analyzing delta commits {}...".format(project_name))
+    print("{} - Analyzing delta commits {}...".format(datetime.now().strftime("%m-%d-%Y_%H%M%S"), project_name))
     (
       framework_occurrences,
       migration_occurrences,

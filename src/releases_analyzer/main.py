@@ -19,7 +19,6 @@ def run(input_folder):
         print("Creating csv with APIs information - {}\n".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S")))
         file_name = file.replace("release_commits_", "release_info_")
         report_path = os.path.join(root, file_name)
-        print(apis_info)
         create_csv(report_path, apis_columns, apis_info)
   
   print("Done!")

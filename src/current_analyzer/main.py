@@ -22,7 +22,7 @@ def __examine_local_repo(local_path):
   both_files = 0
 
   walk_dir = os.path.abspath(local_path)
-  excluded_folders = ['.git']
+  excluded_folders = ['.git/']
 
   for currentpath, folders, files in os.walk(walk_dir, topdown=True):
     folders[:] = [ f for f in folders if f not in excluded_folders ]
@@ -51,7 +51,6 @@ def __examine_local_repo(local_path):
             both_files += 1
         except:
           print("Something went wrong at {}".format(os.path.join(currentpath, file)))
-          continue
 
   return (total_files, unittest_files, pytest_files, both_files)
 

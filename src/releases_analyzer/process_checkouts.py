@@ -28,7 +28,7 @@ def __examine_local_repo(local_path, commits):
     infos = { **counts, **matches }
 
     for path, _, files in os.walk(local_path):
-      if '.git' in path:
+      if '.git/' in path:
         continue
 
       for filename in files:

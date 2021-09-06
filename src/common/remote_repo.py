@@ -3,6 +3,7 @@ import shutil
 import zipfile
 import requests
 from datetime import datetime
+from git import Repo
 
 def is_remote_repo(repo_url):
   return repo_url.startswith('http') 
@@ -10,35 +11,13 @@ def is_remote_repo(repo_url):
 def clone_repo(path):
   org = path.split('/')[-2]
   name = path.split('/')[-1]
+  current_dir = os.getcwd()
 
-  base_url = "https://api.github.com"
-  headers = {
-      "Accept": "application/vnd.github.v3+json"
-    }
-  print("{} - Cloning repository...".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S")))
-  response = requests.get(
-              base_url + "/repos/{}/{}/zipball".format(org, name),
-              headers=headers,
-              stream=True
-            )
+  repo_path = current_dir + '/' + name
+  repo = Repo.clone_from(path, repo_path)
 
-  if response.status_code != 200:
-    raise Exception("Failed to query Github API. Response status {}".format(response.status_code))
-  
-  # write blob 
-  zip_path = "{}-{}.zip".format(org, name)
-  with open(zip_path, "wb") as fd:
-    for chunk in response.iter_content(chunk_size=512):
-      fd.write(chunk)
-  
-  # extract blob
-  filepath = "{}-{}".format(org, name)
-  with zipfile.ZipFile(zip_path, 'r') as zip_ref:
-    zip_ref.extractall(filepath)
-
-  os.remove(zip_path)
   print(datetime.now().strftime("%d/%m/%Y %H:%M:%S"), "OK")
-  return filepath
+  return repo_path
 
 def remove_cloned_repo(path):
   print("{} - Removing repository...".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S")))
