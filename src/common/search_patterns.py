@@ -2,6 +2,8 @@ import re
 from pyparsing import Regex, pythonStyleComment, dblQuotedString, sglQuotedString, quotedString
 from src.common.docstring_pattern import docString
 
+DJANGO_DOCTEST_COMMENT = 'This file demonstrates writing tests using the unittest module. These will pass'
+
 # Function search_patterns_in_contents
 # param patterns      list of objects with `name` and `regex` keys. E. g.:
 #                     [
@@ -20,7 +22,7 @@ def search_patterns_in_contents(patterns, contents, ignoreComments=True):
   result = __init_result(patterns)
 
   for content in contents:
-    if content.strip() == '' or content.strip().startswith('"""'):
+    if content.strip() == '' or content.strip().startswith('"""') or content == DJANGO_DOCTEST_COMMENT:
       continue
 
     if ignoreComments and content.strip().startswith('#'):
@@ -57,7 +59,10 @@ def search_patterns_in_content(patterns, content, ignoreComments=True):
     expr = Regex(r'.*').ignore(pythonStyleComment | quotedString | dblQuotedString | sglQuotedString | docString)
 
   filtered_result = list(expr.scanString(content))
-  filtered_result = '\n'.join([ re.sub("[\"|\'](.*)[\"|\']", "", text[0]) for (text, _, _ ) in filtered_result])
+  # remove strings from code
+  filtered_result = [ re.sub("[\"|\'](.*)[\"|\']", "", text[0]) for (text, a, b) in filtered_result]
+  # remove comments that starts at the middle/are in the end of the line
+  filtered_result = '\n'.join([ re.sub("[\#](.*)", "", line) for line in filtered_result])
 
   for pattern in patterns: 
     count_key = 'count_' + pattern['name']
