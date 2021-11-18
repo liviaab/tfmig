@@ -6,7 +6,7 @@ import os
 SCRIPT_USAGE = '\nUsage: \n\t main.py -s analyze_delta_commits -i <inputfile>.csv \nor \n\t main.py -s analyze_releases -i <inputfolder> \n\n'
 DELTA_COMMITS_SCRIPT = "analyze_delta_commits"
 RELEASES_SCRIPT = "analyze_releases"
-
+CODE_TRANSFORMATION = "code_transformation"
 
 def parse_line_command(argv):
   input_arg = ''
@@ -26,7 +26,7 @@ def parse_line_command(argv):
     elif opt in ("-s", "--script"):
       script = arg
 
-  if not input_arg or not script:
+  if (not input_arg or not script) and not (script == CODE_TRANSFORMATION) :
     print(SCRIPT_USAGE)
     sys.exit()
 
