@@ -8,13 +8,11 @@ def run(file_path):
   print(file_path)
   try: 
     with open(file_path, newline='') as csvfile:
-      print(file_path)
       csvreader = csv.DictReader(csvfile)
       migration_commits = __filter_migration_commits(csvreader)
       results_by_transformation = __aggregate_code_transformations(migration_commits)
   except:
     with open(file_path, newline='') as csvfile:
-      print(file_path)
       csvreader = csv.DictReader(csvfile,  delimiter=';')
       migration_commits = __filter_migration_commits(csvreader)
       results_by_transformation = __aggregate_code_transformations(migration_commits)
@@ -44,8 +42,8 @@ def __aggregate_code_transformations(migration_commits):
   for index, row in enumerate(migration_commits):
     for transformation_type in transformation_types:
       results_by_transformation[transformation_type]["Transformation type"] = transformation_type
+      
       if row[transformation_type] == 'True':
-
         u_removal, p_addition = __get_row_transformation(row, transformation_type)
         if index + 1 <= migration_commits_count:
           results_by_transformation[transformation_type]["100% - commit count"] += 1
@@ -108,7 +106,6 @@ def __get_row_transformation(row, transformation_type):
   for column in columns["p_addition"]:
     p_addition += int(row[column])
   
-  print("commit_index",row["commit_index"], "transformation type", transformation_type, "->", u_removal, p_addition)
   return u_removal, p_addition
 
 """
