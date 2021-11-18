@@ -3,7 +3,20 @@ import sys
 import getopt
 import os
 
-SCRIPT_USAGE = '\nUsage: \n\t main.py -s analyze_delta_commits -i <inputfile>.csv \nor \n\t main.py -s analyze_releases -i <inputfolder> \n\n'
+SCRIPT_USAGE = """
+Usage:
+
+  python3 main.py -s analyze_delta_commits -i <inputfile>.csv
+
+                      or
+
+  python3 main.py -s analyze_releases -i <inputfolder>
+
+                      or 
+
+  python3 main.py -s code_transformation
+
+""" 
 DELTA_COMMITS_SCRIPT = "analyze_delta_commits"
 RELEASES_SCRIPT = "analyze_releases"
 CODE_TRANSFORMATION = "code_transformation"

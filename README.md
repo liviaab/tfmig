@@ -20,7 +20,7 @@ $ python3 main.py -i in.csv
 ### MacOs
 ```sh
 $ pip3 install -r requirements.txt
-$ python3 main.py -i in.csv
+$ python3 main.py -h # to see its usage
 ```
 
 ### Running tests
