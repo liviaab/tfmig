@@ -84,13 +84,15 @@ In the end, we'll have:
 def __init_results_by_transformation():
   results = {}
   for transformation_type in list(transformation_columns_by_type.keys()):
-    results[transformation_type] = __init_type_result()
+    results[transformation_type] = __init_type_result(transformation_type)
   return results
 
-def __init_type_result():
+def __init_type_result(transformation_type):
   result = {}
   for column in output_columns:
     result[column] = 0
+  
+  result["Transformation type"] = transformation_type
   return result
 
 def __get_row_transformation(row, transformation_type):
